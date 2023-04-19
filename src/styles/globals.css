@@ -2,10 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --bg-color: #1f242d;
+  --secondary-bg-color: #323946;
+  --text-color: #fff;
+  --main-color: #0ef;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,11 +23,26 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--text-color);
+  background: var(--bg-color);
+}
+
+pre{
+  @apply overflow-auto px-4 py-4 rounded-md relative;
+}
+
+button {
+  @apply  bg-black text-gray-500 font-bold py-1 px-1 rounded text-xs absolute top-2 right-2;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@media (max-width: 768px) {
+  .md\:flex-col {
+    flex-direction: column;
+}
 }

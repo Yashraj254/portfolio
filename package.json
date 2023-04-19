@@ -9,15 +9,28 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@notionhq/client": "^2.2.4",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/node": "18.15.11",
     "@types/react": "18.0.34",
     "@types/react-dom": "18.0.11",
     "autoprefixer": "10.4.14",
+    "boxicons": "^2.1.4",
     "next": "13.3.0",
+    "notion-to-md": "^2.5.6",
     "postcss": "8.4.21",
+    "prose": "^0.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.8.0",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.2",
+    "scrollreveal": "^4.0.9",
     "tailwindcss": "3.3.1",
+    "typed.js": "^2.0.15",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/scrollreveal": "^0.0.8"
   }
 }
