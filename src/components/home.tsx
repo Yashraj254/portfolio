@@ -9,6 +9,8 @@ import {
   useRef
 } from "react";
 import BackgroundAnimation from "./bgAnimation";
+import scrollAnimation from "@/utils/scrollAnimation";
+import Typed from "typed.js";
 
 
 
@@ -23,19 +25,21 @@ const HomePage = () => {
   const divRef = useRef<HTMLDivElement>(null);
   const pRef = useRef<HTMLParagraphElement>(null);
   const spanRef = useRef<HTMLSpanElement>(null);
-
+  console.log("nope");
+  console.log("H1 Ref",h1Ref.current);
   useEffect(() => {
-    // console.log("nope");
-    // console.log("H1 Ref",h1Ref.current);
+    
     {
-      if (h1Ref.current && divRef.current && pRef.current) {
-        // const typed = new Typed(spanRef.current, {
-        //   strings: ['Android Developer', 'Web Developer', 'Blogger'],
-        //   typeSpeed: 100,
-        //   backSpeed: 100,
-        //   backDelay: 1000,
-        //   loop: true,
-        // });
+      if (h1Ref?.current && divRef?.current && pRef?.current) {
+        console.log("If H1 Ref",h1Ref?.current);
+
+        const typed = new Typed(spanRef.current, {
+          strings: ['Android Developer', 'Web Developer', 'Blogger'],
+          typeSpeed: 100,
+          backSpeed: 100,
+          backDelay: 1000,
+          loop: true,
+        });
 
         try {
           // scrollAnimation(divRef?.current, "top");
@@ -44,13 +48,13 @@ const HomePage = () => {
         } catch (error) {
           console.log("Error", error);
         }
-        // return () => {
-        //   // Destroy Typed instance during cleanup to stop animation
-        //   typed.destroy();
-        // };
+        return () => {
+          // Destroy Typed instance during cleanup to stop animation
+          typed.destroy();
+        };
       }
     }
-  }, [h1Ref.current, divRef.current, pRef.current]);
+  }, []);
 
   return (
     <section id="home" className="flex w-full h-screen">
@@ -63,10 +67,7 @@ const HomePage = () => {
           And I'm a <span ref={spanRef} className="text-main-color"></span>
         </h3>
         <p ref={pRef}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-          ipsum harum vero obcaecati repellendus porro ullam sed molestias
-          iusto, quos illo dicta odit error voluptate nostrum assumenda facere
-          libero neque.
+        "Hello and welcome to my portfolio! I am a passionate Android developer with a focus on creating intuitive and user-friendly mobile applications. I have honed my skills through personal projects and courses, which have allowed me to gain practical experience and stay up-to-date with the latest technologies and trends in the industry.
         </p>
 
         <div className="flex  px-10 py-5 space-x-5 text-3xl ">

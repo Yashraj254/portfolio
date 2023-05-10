@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from 'react'
-import ProjectItem from './ProjectItem'
-import main from '../images/main.jpg'
+import React, { useEffect, useRef } from "react";
+import ProjectItem from "./ProjectItem";
+import main from "../images/main.jpg";
+import { Project } from "../../type";
+import Link from "next/link";
 
-const Projects = () => {
+const Projects = (projects: { data: Project[] }) => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     // console.log("nope", h1Ref);
@@ -17,55 +19,66 @@ const Projects = () => {
     }
   }, []);
   return (
-    <div id='projects' className='  p-2 py-16 px-8 bg-secondary-bg-color mx-auto'>
-     
-     <h1 className='flex py-4 font-bold text-4xl justify-center'>My &nbsp;<span className='text-main-color'>Projects</span> </h1>
-     
-        <div className='grid md:grid-cols-3 gap-8'>
-          <ProjectItem
-            title='Property Finder'
-            backgroundImg={main}
-            projectUrl='/property'
-            tech='React JS'
-          />
-          <ProjectItem
-            title='Crypto App'
-            backgroundImg={main}
-            projectUrl='/crypto'
-            tech='React JS'
+    <div
+      id="projects"
+      className="  p-2 py-16 px-8 bg-secondary-bg-color mx-auto"
+    >
+      <h1 className="flex py-4 font-bold text-4xl justify-center">
+        My &nbsp;<span className="text-main-color">Projects</span>{" "}
+      </h1>
 
-          />
-          <ProjectItem
-            title='Netflix App'
-            backgroundImg={main}
-            projectUrl='/netflix'
-            tech='React JS'
+      <div className="grid md:grid-cols-3 gap-8">
+        {projects.data.map((project: Project) => (
+          <div key={project.pageId}>
+            <Link href={"/projects/" + project.slug}>
+              <ProjectItem
+                title= {project.title!!}
+                backgroundImg={main}
+                projectUrl= {project.slug!!}
+                tech= {project.tech!!}
+              />
+            </Link>
+          </div>
+        ))}
+        {/* <ProjectItem
+          title="GPT Clone"
+          backgroundImg={main}
+          projectUrl="/gptClone"
+          tech="Android, Jetpack Compose"
+        />
+        <ProjectItem
+          title="MMP Player"
+          backgroundImg={main}
+          projectUrl="/mmpPlayer"
+          tech="Android, Kotlin"
+        />
+        <ProjectItem
+          title="Let's Connect"
+          backgroundImg={main}
+          projectUrl="/letsConnect"
+          tech="Android, Kotlin"
+        />
+        <ProjectItem
+          title="Bridgestone"
+          backgroundImg={main}
+          projectUrl="/bridgestone"
+          tech="Android, Jetpack Compose"
+        />
+        <ProjectItem
+          title="MovieBuzz"
+          backgroundImg={main}
+          projectUrl="/movieBuzz"
+          tech="Android, Java"
+        />
+        <ProjectItem
+          title="Attendance Diary"
+          backgroundImg={main}
+          projectUrl="/attendanceDiary"
+          tech="Android, Java"
+        /> */}
+      </div>
+    </div>
+  );
+};
 
-          />
-          <ProjectItem
-            title='Twitch UI'
-            backgroundImg={main}
-            projectUrl='/twitch'
-            tech='Next JS'
-
-          />
-          <ProjectItem
-            title='Netflix App'
-            backgroundImg={main}
-            projectUrl='/netflix'
-            tech='React JS'
-
-          />
-          <ProjectItem
-            title='Twitch UI'
-            backgroundImg={main}
-            projectUrl='/twitch'
-            tech='Next JS'
-
-          />
-         
-        </div></div>
-  )
-}
-
-export default Projects
+export default Projects;

@@ -5,7 +5,8 @@ import BackgroundAnimation from "./bgAnimation";
 import Image from "next/image";
 import profile_image from "../images/profile_image.png";
 // import { scrollAnimation } from "@/utils/scrollAnimation";
-import { Props } from "./main";
+import { Props } from "./home";
+import scrollAnimation from "@/utils/scrollAnimation";
 
 const About = () => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
@@ -26,8 +27,14 @@ const About = () => {
     }
   }, []);
   return (
-    <section id="about" className=" flex flex-col md:flex-row w-full min-h-screen bg-secondary-bg-color p-2 py-16 px-8">
-      <div ref={divRef} className="flex flex-col ml-20 mr-10 justify-center p-2 py-16">
+    <section
+      id="about"
+      className=" flex flex-col md:flex-row w-full min-h-screen bg-secondary-bg-color p-2 py-16 px-8"
+    >
+      <div
+        ref={divRef}
+        className="flex flex-col ml-20 mr-10 justify-center p-2 py-16"
+      >
         <h1 ref={h1Ref} className="font-bold text-4xl leading-10 ">
           About <span className="text-main-color">Me</span>
         </h1>
@@ -35,10 +42,11 @@ const About = () => {
           <span>Android Developer</span>
         </h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-          ipsum harum vero obcaecati repellendus porro ullam sed molestias
-          iusto, quos illo dicta odit error voluptate nostrum assumenda facere
-          libero neque.
+          "Hello and welcome to my portfolio! I am a passionate Android
+          developer with a focus on creating intuitive and user-friendly mobile
+          applications. I have honed my skills through personal projects and
+          courses, which have allowed me to gain practical experience and stay
+          up-to-date with the latest technologies and trends in the industry.
         </p>
       </div>
 

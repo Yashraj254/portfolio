@@ -13,6 +13,11 @@ import github_icon from "../images/github_icon.svg";
 import css_icon from "../images/css_icon.svg";
 import firebase_icon from "../images/firebase_icon.svg";
 import SkillItem from "./SkillItem";
+import java_icon from "../images/java_icon.svg";
+import kotlin_icon from "../images/kotlin_icon.svg";
+import typescript_icon from "../images/typescript_icon.svg";
+import android_icon from "../images/android_icon.svg";
+import compose_icon from "../images/compose_icon.png";
 
 const Skills = () => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
@@ -33,14 +38,20 @@ const Skills = () => {
       <h1 className="flex justify-center text-4xl font-bold p-4">Technical &nbsp;<span className='text-main-color'>Skills</span></h1>
       
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <SkillItem title="Java" icon={java_icon} />
+        <SkillItem title="Kotlin" icon={kotlin_icon} />
+        <SkillItem title="Android" icon={android_icon} />
+        <SkillItem title="Jetpack Compose" icon={compose_icon} />
+        <SkillItem title="Firebase" icon={firebase_icon} />
+        <SkillItem title="Github" icon={github_icon} />
         <SkillItem title="HTML" icon={html_icon} />
         <SkillItem title="CSS" icon={css_icon} />
         <SkillItem title="JavaScript" icon={javascript_icon} />
         <SkillItem title="React" icon={react_icon} />
         <SkillItem title="Tailwind" icon={tailwind_icon} />
-        <SkillItem title="Firebase" icon={firebase_icon} />
-        <SkillItem title="Github" icon={github_icon} />
         <SkillItem title="Next JS" icon={nextjs_icon} />
+        <SkillItem title="Typescript" icon={typescript_icon} />
+        
       </div>
     </section>
   );
