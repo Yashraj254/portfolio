@@ -1,11 +1,7 @@
-import Link from "next/link";
-import React, { FC, useEffect, useRef } from "react";
-import { FaGithub, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-import BackgroundAnimation from "./bgAnimation";
 import Image from "next/image";
-import profile_image from "../images/profile_image.png";
+import { useEffect, useRef } from "react";
+import my_profile_image from "../images/my_profile_image.png";
 // import { scrollAnimation } from "@/utils/scrollAnimation";
-import { Props } from "./home";
 import scrollAnimation from "@/utils/scrollAnimation";
 
 const About = () => {
@@ -18,9 +14,9 @@ const About = () => {
     if (h1Ref.current !== undefined) {
       //  console.log('hello', h1Ref.current, divRef.current)
       try {
-        // scrollAnimation(divRef.current, "left");
-        // scrollAnimation(h1Ref.current, "top");
-        // scrollAnimation(imgRef.current, "right");
+        scrollAnimation(divRef.current, "left");
+        scrollAnimation(h1Ref.current, "top");
+        scrollAnimation(imgRef.current, "right");
       } catch (error) {
         console.log("Error", error);
       }
@@ -31,9 +27,10 @@ const About = () => {
       id="about"
       className=" flex flex-col md:flex-row w-full min-h-screen bg-secondary-bg-color p-2 py-16 px-8"
     >
+   
       <div
         ref={divRef}
-        className="flex flex-col ml-20 mr-10 justify-center p-2 py-16"
+        className="flex flex-col md:ml-20 md:mr-10 justify-center p-2 py-16"
       >
         <h1 ref={h1Ref} className="font-bold text-4xl leading-10 ">
           About <span className="text-main-color">Me</span>
@@ -50,15 +47,15 @@ const About = () => {
         </p>
       </div>
 
-      <div className="flex flex-col w-[90%] justify-center mx-20 ">
+      <div className="flex flex-col w-[100%] justify-center md:mx-20 ">
         {/* <BackgroundAnimation /> */}
 
         <Image
           ref={imgRef}
-          src={profile_image}
-          alt="me"
-          height="500"
-          className=" mr-16 animate-[floatImage_ease-in-out_4s_infinite] "
+          src={my_profile_image}
+          alt="me"      
+          
+          className=" mr-16 animate-[floatImage_ease-in-out_4s_infinite]"
         />
       </div>
     </section>

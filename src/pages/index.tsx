@@ -9,6 +9,7 @@ import { GetStaticProps } from "next";
 import { Blog, Project } from "../../type";
 import { Client } from "@notionhq/client";
 import { useState } from "react";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,19 +35,23 @@ const fetchFromNotion = async () => {
   const allProjects: Project[] = [];
 
   blogsQuery.results.forEach(async (page: any) => {
-
+    // console.log(page.properties.date.rich_text[0]);
     const blog: Blog = {
       title: page.properties.title.title[0].plain_text,
       tags: page.properties.tags.multi_select.map((tag: any) => tag.name),
       pageId: page.id,
       slug: page.properties.slug.rich_text[0].plain_text,
+      date: page.properties.date.date.start,
     };
     allBlogs.push(blog);
   });
 
   projectsQuery.results.forEach(async (page: any) => {
+    // console.log(page.properties.banner.files[0]);
+
     const project: Project = {
       title: page.properties.title.title[0].plain_text,
+      banner: page.properties.banner.files[0].file.url,
       tech: page.properties.tech.rich_text[0].plain_text,
       tags: page.properties.tags.multi_select.map((tag: any) => tag.name),
       pageId: page.id,
@@ -55,7 +60,7 @@ const fetchFromNotion = async () => {
     allProjects.push(project);
   });
 
-  return {allBlogs, allProjects};
+  return { allBlogs, allProjects };
 };
 
 export default function Home(props: any) {
@@ -63,11 +68,11 @@ export default function Home(props: any) {
   const [projects, setProjects] = useState<Blog[]>(props.data.allProjects);
 
   return (
-    <div>
+    <div >
       <Navbar />
       <HomePage />
-      <Blogs data={blogs}/>
-      <Projects data={projects}/>
+      <Blogs data={blogs} />
+      <Projects data={projects} />
       <Skills />
       <About />
     </div>
@@ -80,5 +85,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       data,
     },
+    revalidate: 60,
   };
 };
