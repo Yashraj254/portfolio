@@ -25,7 +25,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className=" flex flex-col md:flex-row w-full min-h-screen bg-secondary-bg-color p-2 py-16 px-8"
+      className="flex flex-col md:flex-row w-full min-h-screen  p-2 py-16 px-8"
     >
    
       <div
@@ -33,7 +33,7 @@ const About = () => {
         className="flex flex-col md:ml-20 md:mr-10 justify-center p-2 py-16"
       >
         <h1 ref={h1Ref} className="font-bold text-4xl leading-10 ">
-          About <span className="text-main-color">Me</span>
+          About <span className="text-primary-color">Me</span>
         </h1>
         <h3 className=" font-bold text-2xl leading-10">
           <span>Android Developer</span>
@@ -55,7 +55,7 @@ const About = () => {
           src={my_profile_image}
           alt="me"      
           
-          className=" mr-16 animate-[floatImage_ease-in-out_4s_infinite]"
+          className="md:mx-16 animate-[floatImage_ease-in-out_4s_infinite]"
         />
       </div>
     </section>

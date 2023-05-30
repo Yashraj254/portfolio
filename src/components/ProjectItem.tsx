@@ -40,7 +40,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({
         src={backgroundImg}
         width="1920"
         height="1080"
-        alt="/"
+        alt={title}
         loading="eager"
         priority={true}
       />

@@ -18,9 +18,9 @@ const Projects = (projects: { data: Project[] }) => {
     }
   }, []);
   return (
-    <div id="projects" className="w-full p-2 py-16 px-8 bg-secondary-bg-color ">
+    <div id="projects" className="w-full p-2 py-16 px-8  ">
       <h1 ref={h1Ref} className="flex py-4 font-bold text-4xl justify-center">
-        My &nbsp;<span className="text-main-color">Projects</span>{" "}
+        My &nbsp;<span className="text-primary-color">Projects</span>{" "}
       </h1>
 
       <div className="grid md:grid-cols-3 gap-8">

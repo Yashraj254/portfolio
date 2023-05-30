@@ -51,17 +51,17 @@ const HomePage = () => {
   }, []);
 
   return (
-    <section id="home" className="flex flex-row w-full h-screen py-4">
+    <section id="home" className="flex flex-col md:flex-row  w-full h-screen py-4 px-8">
       <div
         
-        className="flex flex-col w-[50%] ml-16 mr-10 justify-center "
+        className="flex flex-col md:w-[50%] mr-8 justify-center "
       >
         <h3 ref={h3Ref} className="font-bold text-2xl leading-10 ">Hello,It's Me</h3>
         <h1 ref={h1Ref} className=" font-bold text-4xl leading-10">
           Yashraj Singh
         </h1>
         <h3 ref={titleRef} className="font-bold text-2xl leading-10">
-          And I'm a <span ref={spanRef} className="text-main-color"></span>
+          And I'm a <span ref={spanRef} className="text-primary-color"></span>
         </h3>
         <p ref={pRef}>
           "Hello and welcome to my portfolio! I am a passionate Android
@@ -74,26 +74,26 @@ const HomePage = () => {
         <div ref={pRef} className="flex  px-10 py-5 space-x-5 text-3xl ">
           <Link
             href="/projects"
-            className="border-2 border-main-color hover:bg-main-color text-main-color hover:text-secondary-bg-color h-8 w-8 flex items-center  rounded-[50%] p-1  hover:shadow-[0_0_1rem]  hover:shadow-main-color"
+            className="border-2 border-primary-color hover:bg-primary-color text-primary-color hover:text-bg-color h-8 w-8 flex items-center  rounded-[50%] p-1  hover:shadow-[0_0_1rem]  hover:shadow-primary-color"
           >
             <FaGithub />
           </Link>
           <Link
             href="/projects"
-            className="border-2 border-main-color hover:bg-main-color text-main-color hover:text-secondary-bg-color h-8 w-8 flex items-center  rounded-[50%] p-2  hover:shadow-[0_0_1rem]  hover:shadow-main-color"
+            className="border-2 border-primary-color hover:bg-primary-color text-primary-color hover:text-bg-color h-8 w-8 flex items-center  rounded-[50%] p-2  hover:shadow-[0_0_1rem]  hover:shadow-primary-color"
           >
             <FaLinkedinIn />
           </Link>
           <Link
             href="/projects"
-            className="border-2 border-main-color hover:bg-main-color text-main-color hover:text-secondary-bg-color h-8 w-8 flex items-center  rounded-[50%] p-1  hover:shadow-[0_0_1rem]  hover:shadow-main-color"
+            className="border-2 border-primary-color hover:bg-primary-color text-primary-color hover:text-bg-color h-8 w-8 flex items-center  rounded-[50%] p-1  hover:shadow-[0_0_1rem]  hover:shadow-primary-color"
           >
             <FaTwitter />
           </Link>
         </div>
       </div>
 
-      <div ref={imageRef} className="md:flex flex-col w-[50%] justify-center mr-10">
+      <div ref={imageRef} className="md:flex flex-col  md:w-[50%] justify-center">
       {/* <BackgroundAnimation /> */}
       <Image
         className="md:flex flex-col justify-center "

@@ -22,10 +22,17 @@ module.exports = {
         },
       }),
       colors: {
-        "bg-color": "#1f242d",
+        // "bg-color": "#1f242d",
         "secondary-bg-color": "#323946",
         "main-color": "#0ef",
         "code-bg": "#27272A",
+        "bg-color": "#0C1033",
+        // "secondary-bg-color": "#454b79",
+        "nav-bar-bg": "#1d234d",
+        "nav-bar-bg-hover": "#2e355a",
+        "primary-color": "#8015a7",
+        "nav-text-color": "rgb(235,235,245,0.6)",
+
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
