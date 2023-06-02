@@ -38,6 +38,9 @@ const fetchFromNotion = async () => {
     // console.log(page.properties.date.rich_text[0]);
     const blog: Blog = {
       title: page.properties.title.title[0].plain_text,
+      description: page.properties.description.rich_text[0].plain_text,
+      readTime: page.properties.readTime.rich_text[0].plain_text,
+      thumbnail: page.properties.thumbnail.files[0].file.url,
       tags: page.properties.tags.multi_select.map((tag: any) => tag.name),
       pageId: page.id,
       slug: page.properties.slug.rich_text[0].plain_text,
@@ -51,6 +54,7 @@ const fetchFromNotion = async () => {
 
     const project: Project = {
       title: page.properties.title.title[0].plain_text,
+      sourceCode: page.properties.source_code.url,
       banner: page.properties.banner.files[0].file.url,
       tech: page.properties.tech.rich_text[0].plain_text,
       tags: page.properties.tags.multi_select.map((tag: any) => tag.name),

@@ -22,8 +22,11 @@ const Blogs = (blogs: { data: Blog[] }) => {
             <BlogItem
               title={blog.title!!}
               tags={blog.tags!!}
+              readTime={blog.readTime!!}
               date={blog.date!!}
               index={index}
+              description={blog.description!!}
+              thumbnail={blog.thumbnail!!}
             />
           </Link>
         </div>

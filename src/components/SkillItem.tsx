@@ -21,13 +21,13 @@ const SkillItem: FC<SkillItemProps> = ({ title, icon,index }) => {
   }, []);
   return (
    <div ref={divRef}>
-     <div  className="flex flex-col justify-center h-24 p-6 shadow-xl bg-secondary-bg-color rounded-xl hover:scale-105  ease-in duration-300 ">
-       <div className="grid grid-cols-2 gap-4 justify-center items-center ">
+     <div  className="glowCyan flex flex-col justify-center md:h-24 h-16 md:p-6 p-2 shadow-xl  rounded-xl  hover:scale-105 border border-main-color  ease-in duration-300 ">
+       <div className=" grid grid-cols-2 md:gap-4 gap-2 p-2 justify-center items-center ">
          <div className="m-auto">
-           <Image src={icon} width="64" height="64" alt="/" />
+           <Image className="md:p-0 p-2" src={icon} width="64" height="64" alt="/" />
          </div>
-         <div className="flex flex-col items-center justify-center">
-           <h3>{title}</h3>
+         <div className=" flex flex-col items-center justify-center">
+           <h3 className="md:text-[1.25rem] text-base">{title}</h3>
          </div>
        </div>
      </div>

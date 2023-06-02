@@ -6,6 +6,8 @@ import scrollAnimation from "@/utils/scrollAnimation";
 
 interface ProjectItemProps {
   title: string;
+  sourceCode: string;
+  tags: string[];
   backgroundImg: string;
   tech: string;
   projectUrl: string;
@@ -14,6 +16,8 @@ interface ProjectItemProps {
 
 export const ProjectItem: FC<ProjectItemProps> = ({
   title,
+  sourceCode,
+  tags,
   backgroundImg,
   tech,
   projectUrl,
@@ -31,22 +35,40 @@ export const ProjectItem: FC<ProjectItemProps> = ({
   }, []);
 
   return (
-    <div
-      ref={divRef}
-      className=" flex items-center justify-center shadow-xl shadow-bg-color rounded-xl group relative  overflow-hidden"
-    >
-      <Image
-        className="rounded-xl group-hover:opacity-10 group-hover:scale-[1.1]  transition-[0.5s_ease] "
-        src={backgroundImg}
-        width="1920"
-        height="1080"
-        alt="/"
-        loading="eager"
-        priority={true}
-      />
-      <div className="absolute flex flex-col w-[100%] h-[100%] p-4  justify-center translate-y-[100%] group-hover:translate-y-0 transition-[0.5s_ease]  bg-gradient-to-b from-[rgba(0,0,0,0)] to-main-color">
-        <h3 className="text-2xl text-white  text-center font-bold">{title}</h3>
-        <p className="pb-4 pt-2 text-white text-center">{tech}</p>
+    <div ref={divRef}>
+      <div className="projectItem flex flex-col hover:scale-[1.2] ease-out duration-300">
+        <Link href={"/projects/" + projectUrl}>
+          <Image
+            className="rounded-t-xl  "
+            src={backgroundImg}
+            width="1920"
+            height="1080"
+            alt={title}
+            loading="eager"
+            priority={true}
+          />
+          <div className="w-full bg-bg-color bg-gradient-to-b from-[rgb(0,238,255,0.1)] from-10% to-[rgb(0,238,255,0.0)] ">
+            <div className="flex flex-row flex-wrap gap-x-2">
+              {tags.map((tag) => (
+                <h3 className="text-white/25">#{tag}</h3>
+              ))}
+            </div>
+          </div>
+        </Link>
+        <div className="py-2 rounded-b-2xl bg-bg-color/90  hiddenItems  flex-col justify-center items-center w-full gap-2">
+          <div className=" h-2 z-[4] w-full bg-[radial-gradient(ellipse_closest-side,rgb(0,238,255,0.7)_5%,rgb(0,238,255,0.7)_5%,#1f242d,#1f242d)] bg-opacity-10" />
+          <Link className="bg-gradient-to-b glowOnHover w-full flex flex-row justify-center"
+          href={"/projects/" + projectUrl}>
+            Read More
+          </Link>
+          <div className="h-2 z-[4] w-full bg-[radial-gradient(ellipse_closest-side,rgb(0,238,255,0.7)_5%,rgb(0,238,255,0.7)_5%,#1f242d,#1f242d)] bg-opacity-10" />
+          <Link
+            className="bg-gradient-to-b glowOnHover  w-full flex flex-row justify-center"
+            href={sourceCode}
+          >
+            Source Code
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -15,67 +15,72 @@ const Navbar = () => {
 
   return (
     <div className="fixed z-[100] w-full ">
-      <nav className="hidden md:flex flex-row h-16 font-bold text-lg space-x-10 px-8  justify-end items-center bg-bg-color">
-        <Link       
-          className="hover:text-cyan-400 hover:cursor-pointer"
-          activeClass="text-cyan-400"
-          to="home"
-          smooth={true}
-          spy={true}
-          duration={100}
-        >
-          Home
-        </Link>
+      <div className="text-white/50 bg-bg-color  flex flex-col flex-end justify-center">
+        <nav className="h-14 fixed z-[1] w-full   hidden md:flex flex-row  font-bold text-lg space-x-10 px-8  justify-center items-center bg-bg-color">
+          <Link
+            className="hover:text-cyan-400 hover:cursor-pointer"
+            activeClass="glowWhite"
+            to="home"
+            smooth={true}
+            spy={true}
+            duration={100}
+          >
+            Home
+          </Link>
 
-        <Link
-          className="hover:text-cyan-400 hover:cursor-pointer"
-          activeClass="text-cyan-400"
-          to="blogs"
-          smooth={true}
-          spy={true}
-          duration={100}
-        >
-          Blogs
-        </Link>
+          <Link
+            className="hover:text-cyan-400 hover:cursor-pointer"
+            activeClass="glowWhite"
+            to="blogs"
+            smooth={true}
+            spy={true}
+            duration={100}
+          >
+            Blogs
+          </Link>
 
-        <Link
-          className="hover:text-cyan-400 hover:cursor-pointer"
-          activeClass="text-cyan-400"
-          to="projects"
-          smooth={true}
-          spy={true}
-          duration={100}
-        >
-          Projects
-        </Link>
-        <Link
-          className="hover:text-cyan-400 hover:cursor-pointer"
-          activeClass="text-cyan-400"
-          to="skills"
-          smooth={true}
-          spy={true}
-          duration={100}
-        >
-          Skills
-        </Link>
-        <Link
-          className="hover:text-cyan-400 hover:cursor-pointer"
-          activeClass="text-cyan-400"
-          to="about"
-          smooth={true}
-          spy={true}
-          duration={100}
-        >
-          About
-        </Link>
-      </nav>
-      <div className="md:hidden flex w-full   p-8  justify-end items-center  cursor-pointer ">
-        <AiOutlineMenu size={25} onClick={handleNav} />
+          <Link
+            className="hover:text-cyan-400 hover:cursor-pointer"
+            activeClass="glowWhite"
+            to="projects"
+            smooth={true}
+            spy={true}
+            duration={100}
+          >
+            Projects
+          </Link>
+          <Link
+            className="hover:text-cyan-400 hover:cursor-pointer"
+            activeClass="glowWhite"
+            to="skills"
+            smooth={true}
+            spy={true}
+            duration={100}
+          >
+            Skills
+          </Link>
+          <Link
+            className="hover:text-cyan-400 hover:cursor-pointer"
+            activeClass="glowWhite"
+            to="about"
+            smooth={true}
+            spy={true}
+            duration={100}
+          >
+            About
+          </Link>
+        </nav>
+        <div className=" h-2 z-[4] mt-16 align-bottom bg-[radial-gradient(ellipse_closest-side,rgb(0,238,255,0.7)_5%,rgb(0,238,255,0.7)_5%,#1f242d,#1f242d)] bg-opacity-10" />
+        <div className="md:hidden fixed flex w-full   p-8  justify-between items-center  cursor-pointer ">
+          <span className="text-xl font-bold glow">Yashraj Singh</span>
+          <AiOutlineMenu size={25} onClick={handleNav} />
+        </div>
       </div>
+
       <div
         className={
           nav
-            ? " md:hidden fixed left-0 top-0 w-full h-full bg-black/70 "
+            ? "z-10 md:hidden fixed left-0 top-0 w-full h-full bg-black/70 "
             : ""
         }
       >
@@ -87,7 +92,7 @@ const Navbar = () => {
           }
         >
           <div className="flex flex-row justify-between items-center w-full h-8">
-            <h1 className="text-2xl font-bold">Portfolio</h1>
+            <h1 className="text-2xl font-bold">Yashraj Singh</h1>
 
             <AiOutlineClose
               color="#13ADC7"
@@ -96,11 +101,10 @@ const Navbar = () => {
               onClick={handleNav}
             />
           </div>
-          <div className="py-4 flex flex-col">
-           
+          <div className="py-4 flex flex-col w-full items-start">
             <Link
               className="hover:text-cyan-400 hover:cursor-pointer p-2 text-lg"
-              activeClass="text-cyan-400"
+              activeClass="glowWhite"
               to="home"
               smooth={true}
               spy={true}
@@ -109,10 +113,21 @@ const Navbar = () => {
             >
               Home
             </Link>
+            <Link
+              className="hover:text-cyan-400 hover:cursor-pointer p-2 text-lg"
+              activeClass="glowWhite"
+              to="blogs"
+              smooth={true}
+              spy={true}
+              duration={100}
+              onClick={() => setNav(false)}
+            >
+              Blogs
+            </Link>
 
             <Link
               className="hover:text-cyan-400 hover:cursor-pointer p-2 text-lg"
-              activeClass="text-cyan-400"
+              activeClass="glowWhite"
               to="projects"
               smooth={true}
               spy={true}
@@ -123,7 +138,7 @@ const Navbar = () => {
             </Link>
             <Link
               className="hover:text-cyan-400 hover:cursor-pointer p-2 text-lg"
-              activeClass="text-cyan-400"
+              activeClass="glowWhite"
               to="skills"
               smooth={true}
               spy={true}
@@ -135,7 +150,7 @@ const Navbar = () => {
 
             <Link
               className="hover:text-cyan-400 hover:cursor-pointer p-2 text-lg"
-              activeClass="text-cyan-400"
+              activeClass="glowWhite"
               to="about"
               smooth={true}
               spy={true}

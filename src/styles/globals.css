@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -25,7 +23,7 @@
 body {
   color: var(--text-color);
   background: var(--bg-color);
-
+  overflow-x: hidden;
 }
 
 container {
@@ -33,7 +31,7 @@ container {
 }
 
 button {
-  @apply  bg-black text-gray-500 font-bold py-1 px-1 rounded text-xs absolute top-2 right-2 ;
+  @apply bg-black text-gray-500 font-bold py-1 px-1 rounded text-xs absolute top-2 right-2;
 }
 
 @layer base {
@@ -45,5 +43,97 @@ button {
 @media (max-width: 768px) {
   .md\:flex-col {
     flex-direction: column;
+  }
 }
+
+.glow {
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00eeff,
+      0 0 40px #00eeff, 0 0 50px #00eeff, 0 0 60px #00eeff, 0 0 70px #00eeff;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #66f5ff, 0 0 40px #66f5ff,
+      0 0 50px #66f5ff, 0 0 60px #66f5ff, 0 0 70px #66f5ff, 0 0 80px #66f5ff;
+  }
+}
+
+.glowOnHover:hover {
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+.glowWhite {
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glowWhite 1s ease-in-out infinite alternate;
+  -moz-animation: glowWhite 1s ease-in-out infinite alternate;
+  animation: glowWhite 1s ease-in-out infinite alternate;
+}
+
+@keyframes glowWhite {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff,
+      0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #fff,
+      0 0 60px #fff, 0 0 70px #fff, 0 0 80px #fff;
+  }
+}
+
+.glowCyan:hover {
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glowCyan 1s ease-in-out infinite alternate;
+  -moz-animation: glowCyan 1s ease-in-out infinite alternate;
+  animation: glowCyan 1s ease-in-out infinite alternate;
+}
+
+@keyframes glowCyan {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00eeff,
+      0 0 40px #00eeff, 0 0 50px #00eeff, 0 0 60px #00eeff, 0 0 70px #00eeff;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #66f5ff, 0 0 40px #66f5ff,
+      0 0 50px #66f5ff, 0 0 60px #66f5ff, 0 0 70px #66f5ff, 0 0 80px #66f5ff;
+  }
+
+  from {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00eeff, 0 0 20px #00eeff,
+      0 0 25px #00eeff, 0 0 30px #00eeff, 0 0 35px #00eeff;
+  }
+  to {
+    box-shadow: 0 0 5px #fff, 0 0 10px #66f5ff, 0 0 15px #66f5ff,
+      0 0 20px #66f5ff, 0 0 25px #66f5ff, 0 0 30px #66f5ff, 0 0 35px #66f5ff;
+  }
+}
+
+.projectItem {
+  position: relative;
+}
+
+.projectItem:hover .hiddenItems {
+  /* display: flex; */
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.hiddenItems {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 100%;
 }

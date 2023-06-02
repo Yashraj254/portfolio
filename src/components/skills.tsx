@@ -37,7 +37,7 @@ const Skills = () => {
     <section id="skills" className="w-full min-h-screen p-2 py-16 px-8">
       <h1 ref={h1Ref} className="flex justify-center text-4xl font-bold p-4">Technical &nbsp;<span className='text-main-color'>Skills</span></h1>
       
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 md:gap-8 gap-4">
       <SkillItem title="Java" icon={java_icon} index={0}/>
         <SkillItem title="Kotlin" icon={kotlin_icon} index={1}/>
         <SkillItem title="Android" icon={android_icon} index={2}/>

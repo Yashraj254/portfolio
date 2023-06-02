@@ -25,9 +25,9 @@ const About = () => {
   return (
     <section
       id="about"
-      className=" flex flex-col md:flex-row w-full min-h-screen bg-secondary-bg-color p-2 py-16 px-8"
+      className=" flex flex-col md:flex-row w-full  min-h-screen p-2 py-16 px-8"
     >
-   
+  
       <div
         ref={divRef}
         className="flex flex-col md:ml-20 md:mr-10 justify-center p-2 py-16"
@@ -38,7 +38,7 @@ const About = () => {
         <h3 className=" font-bold text-2xl leading-10">
           <span>Android Developer</span>
         </h3>
-        <p>
+        <p className="text-white/70">
           "Hello and welcome to my portfolio! I am a passionate Android
           developer with a focus on creating intuitive and user-friendly mobile
           applications. I have honed my skills through personal projects and
