@@ -114,5 +114,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       project,
       htmlContent,
     },
+    revalidate: 60,
   };
 };

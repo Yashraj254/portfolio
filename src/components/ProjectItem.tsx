@@ -57,8 +57,10 @@ export const ProjectItem: FC<ProjectItemProps> = ({
         </Link>
         <div className="py-2 rounded-b-2xl bg-bg-color/90  hiddenItems  flex-col justify-center items-center w-full gap-2">
           <div className=" h-2 z-[4] w-full bg-[radial-gradient(ellipse_closest-side,rgb(0,238,255,0.7)_5%,rgb(0,238,255,0.7)_5%,#1f242d,#1f242d)] bg-opacity-10" />
-          <Link className="bg-gradient-to-b glowOnHover w-full flex flex-row justify-center"
-          href={"/projects/" + projectUrl}>
+          <Link
+            className="bg-gradient-to-b glowOnHover w-full flex flex-row justify-center"
+            href={"/projects/" + projectUrl}
+          >
             Read More
           </Link>
           <div className="h-2 z-[4] w-full bg-[radial-gradient(ellipse_closest-side,rgb(0,238,255,0.7)_5%,rgb(0,238,255,0.7)_5%,#1f242d,#1f242d)] bg-opacity-10" />
