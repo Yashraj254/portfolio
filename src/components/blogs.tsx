@@ -17,16 +17,17 @@ const Blogs = (blogs: { data: Blog[] }) => {
         My &nbsp;<span className="text-main-color">Blogs</span>{" "}
       </h1>
       {blogs.data.map((blog: Blog,index:number) => (
+        
         <div key={blog.pageId} className="py-2 ">
           <Link href={"/blogs/" + blog.slug}>
             <BlogItem
-              title={blog.title!!}
-              tags={blog.tags!!}
-              readTime={blog.readTime!!}
-              date={blog.date!!}
+              title={blog.title}
+              tags={blog.tags}
+              readTime={blog.readTime}
+              date={blog.date}
               index={index}
-              description={blog.description!!}
-              thumbnail={blog.thumbnail!!}
+              description={blog.description}
+              thumbnail={blog.thumbnail}
             />
           </Link>
         </div>

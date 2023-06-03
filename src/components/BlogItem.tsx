@@ -6,13 +6,13 @@ import Image from "next/image";
 import { FaClock } from "react-icons/fa";
 
 interface BlogItemProps {
-  title: string;
-  description: string;
-  readTime: string;
-  thumbnail: string;
-  tags: string[];
-  date: string;
-  index: number;
+  title?: string;
+  description?: string;
+  readTime?: string;
+  thumbnail?: string;
+  tags?: string[];
+  date?: string;
+  index?: number;
 }
 
 const BlogItem: FC<BlogItemProps> = ({
@@ -27,7 +27,7 @@ const BlogItem: FC<BlogItemProps> = ({
   const divRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (index % 2 === 0) {
+    if (index!! % 2 === 0) {
       scrollAnimation(divRef.current, "left");
     } else {
       scrollAnimation(divRef.current, "right");
@@ -39,10 +39,10 @@ const BlogItem: FC<BlogItemProps> = ({
         <div className="flex flex-col justify-center p-4 md:p-2 md:w-[25%]">
           <Image
             className="rounded-xl"
-            src={thumbnail}
+            src={thumbnail!!}
             width="1920"
             height="1080"
-            alt={title}
+            alt={title!!}
             loading="eager"
             priority={true}
           />
@@ -56,7 +56,7 @@ const BlogItem: FC<BlogItemProps> = ({
               {description}
             </p>
             <div className="flex flex-row flex-wrap gap-2 ">
-              {tags.map((tag) => (
+              {tags!!.map((tag) => (
                 <h3 className="text-white/25">#{tag}</h3>
               ))}
             </div>
