@@ -4,10 +4,11 @@ const scrollAnimation = async (element: any, origin: string) => {
     scrollReveal().reveal(element, {
       reset: true,
       delay: 200,
-      duration: 2000,
+      duration: 1500,
       distance: "100px",
       origin: origin,
     });
+    
   }
 };
 

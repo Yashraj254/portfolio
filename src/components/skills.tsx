@@ -1,38 +1,22 @@
-import React, { useEffect, useRef } from "react";
-import Image from "next/image";
-import bg_login from "../images/bg_login.png";
-// import all images from images folder
-import bridgestone from "../images/bridgestone.png";
-import bridgestone_bg from "../images/bridgestone_bg.png";
-import html_icon from "../images/html_icon.svg";
-import javascript_icon from "../images/javascript_icon.svg";
-import react_icon from "../images/react_icon.svg";
-import nextjs_icon from "../images/nextjs_icon.svg";
-import tailwind_icon from "../images/tailwind_icon.svg";
-import github_icon from "../images/github_icon.svg";
-import css_icon from "../images/css_icon.svg";
-import firebase_icon from "../images/firebase_icon.svg";
-import SkillItem from "./SkillItem";
-import java_icon from "../images/java_icon.svg";
-import kotlin_icon from "../images/kotlin_icon.svg";
-import typescript_icon from "../images/typescript_icon.svg";
+import { useEffect, useRef } from "react";
 import android_icon from "../images/android_icon.svg";
 import compose_icon from "../images/compose_icon.png";
-import scrollAnimation from "@/utils/scrollAnimation";
+import css_icon from "../images/css_icon.svg";
+import firebase_icon from "../images/firebase_icon.svg";
+import github_icon from "../images/github_icon.svg";
+import html_icon from "../images/html_icon.svg";
+import java_icon from "../images/java_icon.svg";
+import javascript_icon from "../images/javascript_icon.svg";
+import kotlin_icon from "../images/kotlin_icon.svg";
+import nextjs_icon from "../images/nextjs_icon.svg";
+import react_icon from "../images/react_icon.svg";
+import tailwind_icon from "../images/tailwind_icon.svg";
+import typescript_icon from "../images/typescript_icon.svg";
+import SkillItem from "./SkillItem";
 
 const Skills = () => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
-  useEffect(() => {
-      //  console.log('hello', h1Ref.current, divRef.current)
-      try {
-        // scrollAnimation(divRef.current, "left");
-        scrollAnimation(h1Ref.current, "top");
-        // scrollAnimation(imgRef.current, "right");
-      } catch (error) {
-        console.log("Error", error);
-      
-    }
-  }, []);
+ 
   return (
     <section id="skills" className="w-full min-h-screen p-2 py-16 px-8">
       <h1 ref={h1Ref} className="flex justify-center text-4xl font-bold p-4">Technical &nbsp;<span className='text-main-color'>Skills</span></h1>

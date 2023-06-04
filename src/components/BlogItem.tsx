@@ -1,6 +1,5 @@
 import scrollAnimation from "@/utils/scrollAnimation";
 import dayjs from "dayjs";
-import { title } from "process";
 import React, { FC, useEffect, useRef } from "react";
 import Image from "next/image";
 import { FaClock } from "react-icons/fa";
@@ -56,8 +55,8 @@ const BlogItem: FC<BlogItemProps> = ({
               {description}
             </p>
             <div className="flex flex-row flex-wrap gap-2 ">
-              {tags!!.map((tag) => (
-                <h3 className="text-white/25">#{tag}</h3>
+              {tags!!.map((tag,index) => (
+                <h3 key={index} className="text-white/25">#{tag}</h3>
               ))}
             </div>
           </div>

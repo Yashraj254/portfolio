@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import my_profile_image from "../images/my_profile_image.png";
-// import { scrollAnimation } from "@/utils/scrollAnimation";
 import scrollAnimation from "@/utils/scrollAnimation";
 
 const About = () => {
@@ -27,7 +26,6 @@ const About = () => {
       id="about"
       className=" flex flex-col md:flex-row w-full  min-h-screen p-2 py-16 px-8"
     >
-  
       <div
         ref={divRef}
         className="flex flex-col md:ml-20 md:mr-10 justify-center p-2 py-16"
@@ -38,12 +36,13 @@ const About = () => {
         <h3 className=" font-bold text-2xl leading-10">
           <span>Android Developer</span>
         </h3>
-        <p className="text-white/70">
+        <p className="text-white/70 floatImage">
           "Hello and welcome to my portfolio! I am a passionate Android
           developer with a focus on creating intuitive and user-friendly mobile
           applications. I have honed my skills through personal projects and
           courses, which have allowed me to gain practical experience and stay
           up-to-date with the latest technologies and trends in the industry.
+          
         </p>
       </div>
 
@@ -53,9 +52,8 @@ const About = () => {
         <Image
           ref={imgRef}
           src={my_profile_image}
-          alt="me"      
-          
-          className=" mr-16 animate-[floatImage_ease-in-out_4s_infinite]"
+          alt="me"
+          className="floatImage mr-16 animate-[floatImage_ease-in-out_4s_infinite]"
         />
       </div>
     </section>

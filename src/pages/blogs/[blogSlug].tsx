@@ -1,13 +1,16 @@
+import CodeItem from "@/components/CodeItem";
 import { Client } from "@notionhq/client";
+import dayjs from "dayjs";
 import Markdown from "markdown-to-jsx";
 import { GetStaticProps } from "next";
+import Image from "next/image";
 import { NotionToMarkdown } from "notion-to-md";
 import { ParsedUrlQuery } from "querystring";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { FaClock } from "react-icons/fa";
 import { remark } from "remark";
 import html from "remark-html";
 import { Blog } from "../../../type";
-import CodeItem from "@/components/CodeItem";
 
 const notionSecret = process.env.NOTION_SECRET;
 const notionDatabaseId = process.env.NOTION_BLOGS_DATABASE_ID;
@@ -35,82 +38,55 @@ const fetchFromNotion = async () => {
   query.results.forEach(async (page: any) => {
     const blog: Blog = {
       title: page.properties.title.title[0].plain_text,
+      description: page.properties.description.rich_text[0].plain_text,
+      readTime: page.properties.readTime.rich_text[0].plain_text,
+      thumbnail: page.properties.thumbnail.url
+        .replace("file/d/", "uc?export=view&id=")
+        .replace("/view?usp=drive_link", "")
+        .replace("/view?usp=sharing", ""),
       tags: page.properties.tags.multi_select.map((tag: any) => tag.name),
       pageId: page.id,
       slug: page.properties.slug.rich_text[0].plain_text,
+      date: page.properties.date.date.start,
     };
     allBlogs.push(blog);
   });
-  // console.log("allBlogs", allBlogs);
 
   return allBlogs;
 };
 
 const BlogPage = (props: any) => {
   const [data, setData] = useState(props);
-  const [copied, setCopied] = useState("");
-  let buttonId = 0;
-  let codeId = 0;
-  let clipboard: any;
   let htmlContent: string = data.htmlContent.toString();
 
-  // const copyToClipBoard = (elementId: string) => {
-  //   console.log("copyToClipBoard",elementId);
-
-  //   // var text = document.getElementById(elementId)?.innerText;
-  //   // navigator.clipboard.writeText(text || "");
-  //   }
-
-  // useEffect(() => {
-  //   const handleClick = (event: MouseEvent) => {
-  //     const target = event.target as HTMLElement;
-  //     if (target.classList.contains('my-button')) {
-
-  //   var text = document.getElementById(target.id.replaceAll('button','code'))?.innerText;
-  //   navigator.clipboard.writeText(text || "");
-
-  //       // Button click event handling
-  //       // Your logic here
-  //     }
-  //   };
-
-  //   document.addEventListener('click', handleClick);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleClick);
-  //   };
-  // }, []);
-  // htmlContent.match(/<\/code><button>/g || [])?.forEach((codeBlock: string) => {
-  //   let modifiedCodeBlock = codeBlock.replace(
-  //     "<button>",
-  //     `<button class="my-button"  id ='${
-  //       "button" + buttonId
-  //     }'>`
-  //   );
-  //   htmlContent = htmlContent.replace(codeBlock, modifiedCodeBlock);
-  //   buttonId++;
-  // });
-  // // store the modifier htmlContent in a variable
-
-  // htmlContent.match(/<pre><code>/g || [])?.forEach((codeBlock: string) => {
-  //   let modifiedCodeBlock = codeBlock.replace(
-  //     "<code>",
-  //     `<code language='kotlin' id ='${"code" + codeId}'>`
-  //   );
-  //   htmlContent = htmlContent.replace(codeBlock, modifiedCodeBlock);
-
-  //   codeId++;
-  // });
-  // console.log("htmlContent", htmlContent);
-
   return (
-    // <SyntaxHighlighter language="kotlin" style={dark}>
     <section
       className=" px-6 prose prose-xl prose-zinc prose-p:text-white 
      prose-code:bg-code-bg prose-code:before:content-none
      prose-code:after:content-none prose-code:p-1 prose-code:rounded-md container  max-w-none mx-auto sm:w-3/4 md:w-3/4 lg:w-3/4"
-      // dangerouslySetInnerHTML={{ __html: htmlContent }}
     >
+      <div className="flex flex-col w-full">
+        <Image
+          className="rounded-3xl m-0 mt-4"
+          src={data.blog.thumbnail}
+          alt={data.blog.title}
+          width={1920}
+          height={1080}
+          loading="lazy"
+        />
+        <div className="text-white flex flex-row w-full justify-between">
+          <div className="flex flex-row items-center">
+            <FaClock />
+            &nbsp;{data.blog.readTime}
+          </div>
+          <h6>{dayjs(data.blog.date).format("MMMM DD, YYYY")}</h6>
+        </div>
+        <div className="flex flex-row flex-wrap w-full gap-2 leading-3">
+          {data.blog.tags!!.map((tag: any) => (
+            <h5 className="text-white/25">#{tag}</h5>
+          ))}
+        </div>
+      </div>
       <Markdown
         options={{
           overrides: {
@@ -126,7 +102,6 @@ const BlogPage = (props: any) => {
         {htmlContent}
       </Markdown>
     </section>
-    // </SyntaxHighlighter>
   );
 };
 
@@ -151,9 +126,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const blog = data.find((blog: Blog) => blog.slug === slug);
   const mdblocks = await n2m.pageToMarkdown(blog?.pageId as string);
   const mdString = n2m.toMarkdownString(mdblocks);
-  // console.log("blog1", data,slug, blog);
   const htmlContent = await convertToHTML(mdString);
-  // console.log("htmlContent", htmlContent);
   return {
     props: {
       blog,

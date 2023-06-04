@@ -1,8 +1,7 @@
-import Link from "next/link";
-import { title } from "process";
-import React, { FC, useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
 import scrollAnimation from "@/utils/scrollAnimation";
+import Image from "next/image";
+import Link from "next/link";
+import { FC, useEffect, useRef } from "react";
 
 interface ProjectItemProps {
   title: string;
@@ -49,8 +48,8 @@ export const ProjectItem: FC<ProjectItemProps> = ({
           />
           <div className="w-full bg-bg-color bg-gradient-to-b from-[rgb(0,238,255,0.1)] from-10% to-[rgb(0,238,255,0.0)] ">
             <div className="flex flex-row flex-wrap gap-x-2">
-              {tags.map((tag) => (
-                <h3 className="text-white/25">#{tag}</h3>
+              {tags.map((tag,index) => (
+                <h3 key={index} className="text-white/25">#{tag}</h3>
               ))}
             </div>
           </div>

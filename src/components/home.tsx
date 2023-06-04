@@ -1,14 +1,11 @@
 import Link from "next/link";
 
 import { FaGithub, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-// import BackgroundAnimation
-import "boxicons/css/boxicons.min.css";
-import { RefObject, useEffect, useRef } from "react";
-import BackgroundAnimation from "./bgAnimation";
-import Typed from "typed.js";
 import scrollAnimation from "@/utils/scrollAnimation";
+import "boxicons/css/boxicons.min.css";
 import Image from "next/image";
-import projects_image from "../images/projects_image.png";
+import { RefObject, useEffect, useRef } from "react";
+import Typed from "typed.js";
 import projects_banner from "../images/projects_banner.png";
 
 export interface Props {
@@ -24,6 +21,7 @@ const HomePage = () => {
   const pRef = useRef<HTMLParagraphElement>(null);
   const spanRef = useRef<HTMLSpanElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const typed = new Typed(spanRef.current, {
       strings: ["Android Developer", "Web Developer", "Blogger"],

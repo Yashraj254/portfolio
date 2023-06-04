@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useRef } from "react";
-import Image, { StaticImageData } from "next/image";
 import scrollAnimation from "@/utils/scrollAnimation";
+import Image, { StaticImageData } from "next/image";
+import { FC, useEffect, useRef } from "react";
 
 interface SkillItemProps {
   title: string;

@@ -1,10 +1,6 @@
-// import Link from "next/link";
 import { useState } from "react";
 import { Link } from "react-scroll";
-// import menu icon from react-icons
-import { useRouter } from "next/router";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-// import AiOutlineMenu from 'react-icons/ai'
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);

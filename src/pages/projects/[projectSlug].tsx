@@ -17,9 +17,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 const convertToHTML = async (mdString: string) => {
   const processedContent = await remark().use(html).process(mdString);
-  //   let htmlContent = processedContent
-  //     .toString()
-  //     .replaceAll("</pre>", `<button>COPY</button></pre>`);
+
   return processedContent.toString();
 };
 
@@ -36,14 +34,16 @@ const fetchFromNotion = async () => {
       title: page.properties.title.title[0].plain_text,
       tech: page.properties.tech.rich_text[0].plain_text,
       description: page.properties.description.rich_text[0].plain_text,
-      banner: page.properties.banner.files[0].file.url,
+      banner: page.properties.banner.url
+        .replace("file/d/", "uc?export=view&id=")
+        .replace("/view?usp=drive_link", "")
+        .replace("/view?usp=sharing", ""),
       tags: page.properties.tags.multi_select.map((tag: any) => tag.name),
       pageId: page.id,
       slug: page.properties.slug.rich_text[0].plain_text,
     };
     allProjects.push(project);
   });
-  // console.log("allProjects", allProjects);
 
   return allProjects;
 };
@@ -53,11 +53,10 @@ const ProjectPage = (props: any) => {
   const htmlContent = data.htmlContent;
   const tags = data.project.tags;
   const summary = data.project.description;
-  // console.log("htmlContent", htmlContent);
 
   return (
     <main
-      className="flex flex-col mt-6 px-20 prose prose-xl prose-zinc prose-p:text-white 
+      className="flex flex-col mt-6 px-8 md:px-20 prose prose-xl prose-zinc prose-p:text-white 
      prose-code:bg-code-bg prose-code:before:content-none
      prose-code:after:content-none prose-code:p-1 prose-code:rounded-md max-w-none mx-auto "
     >
@@ -69,10 +68,13 @@ const ProjectPage = (props: any) => {
         height={1080}
         loading="lazy"
       />
+
       <h1 className="text-white flex flex-row justify-center mb-0">
         {data.project.title}
       </h1>
-      <p className="flex flex-row justify-center"><i>{summary}</i></p>
+      <p className="flex flex-row justify-center">
+        <i>{summary}</i>
+      </p>
       <div className="flex flex-row flex-wrap gap-2 ">
         {tags.map((tag: any) => (
           <div className="px-4 border rounded-2xl bg-secondary-bg-color">
@@ -106,9 +108,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const project = data.find((project: Project) => project.slug === slug);
   const mdblocks = await n2m.pageToMarkdown(project?.pageId as string);
   const mdString = n2m.toMarkdownString(mdblocks);
-  // console.log("Project1", data,slug, Project);
   const htmlContent = await convertToHTML(mdString);
-  // console.log("htmlContent", htmlContent);
   return {
     props: {
       project,
