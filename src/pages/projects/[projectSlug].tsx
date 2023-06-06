@@ -3,11 +3,11 @@ import { GetStaticProps } from "next";
 import { NotionToMarkdown } from "notion-to-md";
 import { ParsedUrlQuery } from "querystring";
 import { useState } from "react";
-
 import { remark } from "remark";
 import html from "remark-html";
 import { Project } from "../../../type";
 import Image from "next/image";
+import Head from "next/head";
 
 const notionSecret = process.env.NOTION_SECRET;
 const notionDatabaseId = process.env.NOTION_PROJECTS_DATABASE_ID;
@@ -55,11 +55,15 @@ const ProjectPage = (props: any) => {
   const summary = data.project.description;
 
   return (
-    <main
+    <div
       className="flex flex-col mt-6 px-8 md:px-20 prose prose-xl prose-zinc prose-p:text-white 
      prose-code:bg-code-bg prose-code:before:content-none
      prose-code:after:content-none prose-code:p-1 prose-code:rounded-md max-w-none mx-auto "
     >
+      <Head>
+        <title>{data.project.title}</title>
+        <meta name="description" content={data.project.description} />
+      </Head>
       <Image
         className="rounded-3xl mb-2"
         src={data.project.banner}
@@ -83,7 +87,7 @@ const ProjectPage = (props: any) => {
         ))}
       </div>
       <section dangerouslySetInnerHTML={{ __html: htmlContent }} />
-    </main>
+    </div>
   );
 };
 
@@ -108,7 +112,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const project = data.find((project: Project) => project.slug === slug);
   const mdblocks = await n2m.pageToMarkdown(project?.pageId as string);
   const mdString = n2m.toMarkdownString(mdblocks);
-  const htmlContent = await convertToHTML(mdString);
+  const htmlContent = await convertToHTML(mdString.parent as string);
   return {
     props: {
       project,

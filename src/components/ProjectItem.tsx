@@ -38,18 +38,22 @@ export const ProjectItem: FC<ProjectItemProps> = ({
       <div className="projectItem flex flex-col hover:scale-[1.2] ease-out duration-300">
         <Link href={"/projects/" + projectUrl}>
           <Image
-            className="rounded-t-xl  "
+            className="rounded-t-xl transition-opacity opacity-0 duration-[2s] "
             src={backgroundImg}
             width="1920"
             height="1080"
             alt={title}
-            loading="eager"
             priority={true}
+            onLoadingComplete={(image) => {
+              image.classList.remove("opacity-0");
+            }}
           />
           <div className="w-full bg-bg-color bg-gradient-to-b from-[rgb(0,238,255,0.1)] from-10% to-[rgb(0,238,255,0.0)] ">
             <div className="flex flex-row flex-wrap gap-x-2">
-              {tags.map((tag,index) => (
-                <h3 key={index} className="text-white/25">#{tag}</h3>
+              {tags.map((tag, index) => (
+                <h3 key={index} className="text-white/25">
+                  #{tag}
+                </h3>
               ))}
             </div>
           </div>

@@ -1,15 +1,14 @@
 import About from "@/components/about";
+import Blogs from "@/components/blogs";
 import HomePage from "@/components/home";
 import Projects from "@/components/projects";
 import Skills from "@/components/skills";
-import { Inter } from "next/font/google";
-import Navbar from "../components/navbar";
-import Blogs from "@/components/blogs";
-import { GetStaticProps } from "next";
-import { Blog, Project } from "../../type";
 import { Client } from "@notionhq/client";
+import { GetStaticProps, Metadata } from "next";
+import { Inter } from "next/font/google";
 import { useState } from "react";
-import Image from "next/image";
+import { Blog, Project } from "../../type";
+import Navbar from "../components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,7 +39,10 @@ const fetchFromNotion = async () => {
       title: page.properties.title.title[0].plain_text,
       description: page.properties.description.rich_text[0].plain_text,
       readTime: page.properties.readTime.rich_text[0].plain_text,
-      thumbnail: (page.properties.thumbnail.url).replace("file/d/", "uc?export=view&id=").replace("/view?usp=drive_link", "").replace("/view?usp=sharing", ""),
+      thumbnail: page.properties.thumbnail.url
+        .replace("file/d/", "uc?export=view&id=")
+        .replace("/view?usp=drive_link", "")
+        .replace("/view?usp=sharing", ""),
       tags: page.properties.tags.multi_select.map((tag: any) => tag.name),
       pageId: page.id,
       slug: page.properties.slug.rich_text[0].plain_text,
@@ -55,7 +57,10 @@ const fetchFromNotion = async () => {
     const project: Project = {
       title: page.properties.title.title[0].plain_text,
       sourceCode: page.properties.source_code.url,
-      banner: (page.properties.banner.url).replace("file/d/", "uc?export=view&id=").replace("/view?usp=drive_link", "").replace("/view?usp=sharing", ""),
+      banner: page.properties.banner.url
+        .replace("file/d/", "uc?export=view&id=")
+        .replace("/view?usp=drive_link", "")
+        .replace("/view?usp=sharing", ""),
       tech: page.properties.tech.rich_text[0].plain_text,
       tags: page.properties.tags.multi_select.map((tag: any) => tag.name),
       pageId: page.id,
@@ -67,12 +72,14 @@ const fetchFromNotion = async () => {
   return { allBlogs, allProjects };
 };
 
+
+
 export default function Home(props: any) {
   const [blogs, setBlogs] = useState<Blog[]>(props.data.allBlogs);
   const [projects, setProjects] = useState<Blog[]>(props.data.allProjects);
 
   return (
-    <div >
+    <div>
       <Navbar />
       <HomePage />
       <Blogs data={blogs} />

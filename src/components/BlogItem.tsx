@@ -37,13 +37,13 @@ const BlogItem: FC<BlogItemProps> = ({
       <div className="border border-white/30 flex flex-col md:flex-row group shadow-xl rounded-xl hover:scale-105 ease-in duration-300">
         <div className="flex flex-col justify-center p-4 md:p-2 md:w-[25%]">
           <Image
-            className="rounded-xl"
+            className="rounded-xl transition-opacity opacity-0 duration-[2s]"
             src={thumbnail!!}
             width="1920"
             height="1080"
             alt={title!!}
-            loading="eager"
             priority={true}
+            onLoadingComplete={(image) => {image.classList.remove("opacity-0")}}
           />
         </div>
 

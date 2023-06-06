@@ -1,13 +1,12 @@
-import Blogs from "@/components/blogs";
-import React, { useEffect, useRef, useState } from "react";
-import Home from ".";
-import { Client } from "@notionhq/client";
-import { Inter } from "next/font/google";
-import { Blog } from "../../type";
-import { GetStaticProps } from "next";
 import BlogItem from "@/components/BlogItem";
 import scrollAnimation from "@/utils/scrollAnimation";
+import { Client } from "@notionhq/client";
+import { GetStaticProps } from "next";
+import { Inter } from "next/font/google";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { Blog } from "../../type";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +29,12 @@ const fetchFromNotion = async () => {
     // console.log(page.properties.date.rich_text[0]);
     const blog: Blog = {
       title: page.properties.title.title[0].plain_text,
+      description: page.properties.description.rich_text[0].plain_text,
+      readTime: page.properties.readTime.rich_text[0].plain_text,
+      thumbnail: page.properties.thumbnail.url
+        .replace("file/d/", "uc?export=view&id=")
+        .replace("/view?usp=drive_link", "")
+        .replace("/view?usp=sharing", ""),
       tags: page.properties.tags.multi_select.map((tag: any) => tag.name),
       pageId: page.id,
       slug: page.properties.slug.rich_text[0].plain_text,
@@ -69,7 +74,13 @@ const AllBlogsPage = (props: any) => {
   //   const blogs = data.allBlogs;
 
   return (
-    <section className="w-full min-h-screen p-2  px-8">
+    <div className="w-full min-h-screen p-2  px-8">
+      <Head>
+        <meta
+          name="description"
+          content="Programming blogs on android."
+        />
+      </Head>
       <h1 ref={h1Ref} className="flex py-4 font-bold text-4xl justify-center">
         My &nbsp;<span className="text-main-color">Blogs</span>{" "}
       </h1>
@@ -84,15 +95,18 @@ const AllBlogsPage = (props: any) => {
         <div key={blog.pageId} className="py-2">
           <Link href={"/blogs/" + blog.slug}>
             <BlogItem
-              title={blog.title!!}
-              tags={blog.tags!!}
-              date={blog.date!!}
+              title={blog.title}
+              tags={blog.tags}
+              readTime={blog.readTime}
+              date={blog.date}
               index={index}
+              description={blog.description}
+              thumbnail={blog.thumbnail}
             />
           </Link>
         </div>
       ))}
-    </section>
+    </div>
   );
 };
 

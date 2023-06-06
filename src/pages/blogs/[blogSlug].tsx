@@ -11,6 +11,7 @@ import { FaClock } from "react-icons/fa";
 import { remark } from "remark";
 import html from "remark-html";
 import { Blog } from "../../../type";
+import Head from "next/head";
 
 const notionSecret = process.env.NOTION_SECRET;
 const notionDatabaseId = process.env.NOTION_BLOGS_DATABASE_ID;
@@ -60,11 +61,15 @@ const BlogPage = (props: any) => {
   let htmlContent: string = data.htmlContent.toString();
 
   return (
-    <section
+    <div
       className=" px-6 prose prose-xl prose-zinc prose-p:text-white 
      prose-code:bg-code-bg prose-code:before:content-none
      prose-code:after:content-none prose-code:p-1 prose-code:rounded-md container  max-w-none mx-auto sm:w-3/4 md:w-3/4 lg:w-3/4"
     >
+      <Head>
+        <title>{data.blog.title}</title>
+        <meta name="description" content={data.blog.description} />
+      </Head>
       <div className="flex flex-col w-full">
         <Image
           className="rounded-3xl m-0 mt-4"
@@ -101,7 +106,7 @@ const BlogPage = (props: any) => {
       >
         {htmlContent}
       </Markdown>
-    </section>
+    </div>
   );
 };
 
@@ -126,7 +131,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const blog = data.find((blog: Blog) => blog.slug === slug);
   const mdblocks = await n2m.pageToMarkdown(blog?.pageId as string);
   const mdString = n2m.toMarkdownString(mdblocks);
-  const htmlContent = await convertToHTML(mdString);
+  const htmlContent = await convertToHTML(mdString.parent as string);
   return {
     props: {
       blog,

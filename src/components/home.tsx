@@ -7,11 +7,18 @@ import Image from "next/image";
 import { RefObject, useEffect, useRef } from "react";
 import Typed from "typed.js";
 import projects_banner from "../images/projects_banner.png";
+import { Metadata } from "next";
+import Head from "next/head";
 
 export interface Props {
   divRef: RefObject<HTMLDivElement>;
   h1Ref: RefObject<HTMLHeadingElement>;
 }
+
+export const metadata : Metadata = {
+  title: "Yashraj Singh",
+  description: "Yashraj Singh's Portfolio",
+};
 
 const HomePage = () => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
@@ -50,6 +57,9 @@ const HomePage = () => {
 
   return (
     <section id="home" className="flex flex-col md:flex-row w-full min-h-screen py-20 px-8">
+      <Head>
+        <title>Yashraj Singh</title>
+      </Head>
       <div
         className="flex flex-col md:w-[50%] md:mr-8 justify-center "
       >
