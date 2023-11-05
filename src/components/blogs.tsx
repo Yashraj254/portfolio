@@ -28,7 +28,7 @@ const Blogs = (blogs: { data: Blog[] }) => {
           </Link>
         </div>
       ))}
-      <Link className="hover:text-main-color" href={"/allBlogs"}>
+      <Link className="hover:text-main-color" href={"/blogs"}>
         <h5 className="flex flex-row justify-center">Show All &gt;&gt;</h5>
       </Link>
     </section>

@@ -5,7 +5,7 @@ import { FC, useEffect, useRef } from "react";
 
 interface ProjectItemProps {
   title: string;
-  sourceCode: string;
+  sourceCode: string | undefined;
   tags: string[];
   backgroundImg: string;
   tech: string;
@@ -43,7 +43,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({
             width="1920"
             height="1080"
             alt={title}
-            priority={true}
+            priority
             onLoadingComplete={(image) => {
               image.classList.remove("opacity-0");
             }}
@@ -67,12 +67,14 @@ export const ProjectItem: FC<ProjectItemProps> = ({
             Read More
           </Link>
           <div className="h-2 z-[4] w-full bg-[radial-gradient(ellipse_closest-side,rgb(0,238,255,0.7)_5%,rgb(0,238,255,0.7)_5%,#1f242d,#1f242d)] bg-opacity-10" />
-          <Link
-            className="bg-gradient-to-b glowOnHover  w-full flex flex-row justify-center"
-            href={sourceCode}
-          >
-            Source Code
-          </Link>
+          {sourceCode && (
+            <Link
+              className="bg-gradient-to-b glowOnHover w-full flex flex-row justify-center"
+              href={sourceCode}
+            >
+              Source Code
+            </Link>
+          )}
         </div>
       </div>
     </div>

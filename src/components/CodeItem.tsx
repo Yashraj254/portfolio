@@ -1,9 +1,8 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import tsx from "react-syntax-highlighter/dist/cjs/languages/prism/tsx";
 import { FaCopy } from "react-icons/fa";
 import { FaPaste } from "react-icons/fa";
-import { tomorrow } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { materialDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
@@ -15,7 +14,24 @@ SyntaxHighlighter.registerLanguage("tsx", tsx);
 
 const CodeItem: React.FC<CodeItemProps> = ({ children, language }) => {
   const [copied, setCopied] = useState(false);
-
+  let childrens: any = [];
+  children.forEach((element: any) => {
+    let child = element.toString().replace(/\n$/, "");
+    childrens.push(child);
+  });
+  if (childrens[0].startsWith("<")) {
+    childrens = "";
+    children.map((child: any) => {
+      if (typeof child === "string") childrens += child;
+      else {
+        childrens += child["props"].href.split("&quot")[0] + '"';
+      }
+    });
+    childrens = childrens.replaceAll("“", '"');
+    console.log(childrens);
+  } else {
+    childrens[0] = childrens[0].replaceAll("“", '"');
+  }
   return (
     <div className="code relative">
       <CopyToClipboard text={children} onCopy={() => setCopied(true)}>
@@ -28,7 +44,7 @@ const CodeItem: React.FC<CodeItemProps> = ({ children, language }) => {
         style={materialDark}
         showLineNumbers={true}
       >
-        {children}
+        {childrens}
       </SyntaxHighlighter>
     </div>
   );

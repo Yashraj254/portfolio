@@ -68,7 +68,7 @@ const Navbar = () => {
         </nav>
         <div className=" h-2 z-[4] mt-16 align-bottom bg-[radial-gradient(ellipse_closest-side,rgb(0,238,255,0.7)_5%,rgb(0,238,255,0.7)_5%,#1f242d,#1f242d)] bg-opacity-10" />
         <div className="md:hidden fixed flex w-full   p-8  justify-between items-center  cursor-pointer ">
-          <span className="text-xl font-bold glow">Yashraj Singh</span>
+          <span className="text-xl font-bold glow">Yashraj Singh Jadon</span>
           <AiOutlineMenu size={25} onClick={handleNav} />
         </div>
       </div>
@@ -88,7 +88,7 @@ const Navbar = () => {
           }
         >
           <div className="flex flex-row justify-between items-center w-full h-8">
-            <h1 className="text-2xl font-bold">Yashraj Singh</h1>
+            <h1 className="text-2xl font-bold">Yashraj Singh Jadon</h1>
 
             <AiOutlineClose
               color="#13ADC7"

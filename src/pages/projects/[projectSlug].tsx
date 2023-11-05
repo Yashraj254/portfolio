@@ -8,6 +8,8 @@ import html from "remark-html";
 import { Project } from "../../../type";
 import Image from "next/image";
 import Head from "next/head";
+import client from "../../../apolloClient";
+import { gql } from "@apollo/client";
 
 const notionSecret = process.env.NOTION_SECRET;
 const notionDatabaseId = process.env.NOTION_PROJECTS_DATABASE_ID;
@@ -46,6 +48,27 @@ const fetchFromNotion = async () => {
   });
 
   return allProjects;
+};
+
+const fetchFromHygraph = async () => {
+  const data = await client.query({
+    query: gql`
+      query {
+        projects {
+          title
+          slug
+          coverImage {
+            url
+          }
+          excerpt
+          content {
+            html
+          }
+        }
+      }
+    `,
+  });
+  return data;
 };
 
 const ProjectPage = (props: any) => {

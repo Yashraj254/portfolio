@@ -1,14 +1,16 @@
 import BlogItem from "@/components/BlogItem";
 import scrollAnimation from "@/utils/scrollAnimation";
 import { Client } from "@notionhq/client";
-import { GetStaticProps } from "next";
-import { Inter } from "next/font/google";
+import { GetStaticProps, Metadata } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Blog } from "../../type";
-import Head from "next/head";
 
-const inter = Inter({ subsets: ["latin"] });
+export const metadata: Metadata = {
+  title: "Blogs",
+  description: "Programming",
+};
 
 const notionSecret = process.env.NOTION_SECRET;
 const notionBlogsDatabaseId = process.env.NOTION_BLOGS_DATABASE_ID;
@@ -26,7 +28,6 @@ const fetchFromNotion = async () => {
   const allBlogs: Blog[] = [];
 
   blogsQuery.results.forEach(async (page: any) => {
-    // console.log(page.properties.date.rich_text[0]);
     const blog: Blog = {
       title: page.properties.title.title[0].plain_text,
       description: page.properties.description.rich_text[0].plain_text,
@@ -38,9 +39,10 @@ const fetchFromNotion = async () => {
       tags: page.properties.tags.multi_select.map((tag: any) => tag.name),
       pageId: page.id,
       slug: page.properties.slug.rich_text[0].plain_text,
+      status: page.properties.status.status.name,
       date: page.properties.date.date.start,
     };
-    allBlogs.push(blog);
+    if (blog.status == "Published") allBlogs.push(blog);
   });
 
   return { allBlogs };
@@ -71,15 +73,18 @@ const AllBlogsPage = (props: any) => {
   useEffect(() => {
     scrollAnimation(h1Ref.current, "top");
   }, []);
-  //   const blogs = data.allBlogs;
 
   return (
     <div className="w-full min-h-screen p-2  px-8">
       <Head>
+        <meta name="description" content="Programming blogs on android." />
+        <meta property="og:title" content="Coding Blogs" key="ogtitle" />
         <meta
-          name="description"
-          content="Programming blogs on android."
+          property="og:description"
+          content="Blogs on android."
+          key="ogdesc"
         />
+        <title>Coding Blogs</title>
       </Head>
       <h1 ref={h1Ref} className="flex py-4 font-bold text-4xl justify-center">
         My &nbsp;<span className="text-main-color">Blogs</span>{" "}

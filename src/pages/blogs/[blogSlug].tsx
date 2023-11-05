@@ -1,8 +1,11 @@
 import CodeItem from "@/components/CodeItem";
+import ImageItem from "@/components/ImageItem";
+import StrongItem from "@/components/StrongItem";
 import { Client } from "@notionhq/client";
 import dayjs from "dayjs";
 import Markdown from "markdown-to-jsx";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 import Image from "next/image";
 import { NotionToMarkdown } from "notion-to-md";
 import { ParsedUrlQuery } from "querystring";
@@ -11,7 +14,6 @@ import { FaClock } from "react-icons/fa";
 import { remark } from "remark";
 import html from "remark-html";
 import { Blog } from "../../../type";
-import Head from "next/head";
 
 const notionSecret = process.env.NOTION_SECRET;
 const notionDatabaseId = process.env.NOTION_BLOGS_DATABASE_ID;
@@ -21,10 +23,11 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 const convertToHTML = async (mdString: string) => {
   const processedContent = await remark().use(html).process(mdString);
-  let htmlContent = processedContent.toString().replaceAll("&#x3C;", "<");
-  // .replaceAll("</pre>", `<button>COPY</button></pre></container>`)
-  // .replaceAll("<pre>", `<container><pre>`);
-  // console.log("htmlContent", htmlContent);
+  let htmlContent = processedContent
+    .toString()
+    .replaceAll("&#x3C;", "<")
+    .replaceAll("&#x26;", "&");
+
   return htmlContent;
 };
 
@@ -35,7 +38,7 @@ const fetchFromNotion = async () => {
     database_id: notionDatabaseId,
   });
   const allBlogs: Blog[] = [];
-
+  // https://drive.google.com/uc?export=view&id=1oCNBhklWDLwBKpWKMMbH_WBgE55ZqEPI
   query.results.forEach(async (page: any) => {
     const blog: Blog = {
       title: page.properties.title.title[0].plain_text,
@@ -59,6 +62,16 @@ const fetchFromNotion = async () => {
 const BlogPage = (props: any) => {
   const [data, setData] = useState(props);
   let htmlContent: string = data.htmlContent.toString();
+  const updatedHtml = htmlContent.replace(
+    /<code>(.*?)<\/code>/gs,
+    (match, codeContent) => {
+      const escapedContent = codeContent
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+      return `<code>${escapedContent}</code>`;
+    }
+  );
 
   return (
     <div
@@ -68,7 +81,19 @@ const BlogPage = (props: any) => {
     >
       <Head>
         <title>{data.blog.title}</title>
+        <meta charSet="utf-8" />
         <meta name="description" content={data.blog.description} />
+        <meta name="keywords" content={data.blog.tags} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Animesh Sharma" />
+        <meta name="image" property="og:image" content={data.blog.thumbnail} />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`https://yash-raj.com/blogs/${data.blog.slug}`}
+        />
+        <meta property="og:title" content={data.blog.title} />
+        <meta property="og:description" content={data.blog.description} />
       </Head>
       <div className="flex flex-col w-full">
         <Image
@@ -101,10 +126,18 @@ const BlogPage = (props: any) => {
                 language: "kotlin",
               },
             },
+
+            strong: {
+              component: StrongItem,
+            },
+
+            blockquote: {
+              component: ImageItem,
+            },
           },
         }}
       >
-        {htmlContent}
+        {updatedHtml}
       </Markdown>
     </div>
   );
@@ -131,6 +164,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const blog = data.find((blog: Blog) => blog.slug === slug);
   const mdblocks = await n2m.pageToMarkdown(blog?.pageId as string);
   const mdString = n2m.toMarkdownString(mdblocks);
+
   const htmlContent = await convertToHTML(mdString.parent as string);
   return {
     props: {

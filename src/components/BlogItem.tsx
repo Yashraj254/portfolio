@@ -42,7 +42,7 @@ const BlogItem: FC<BlogItemProps> = ({
             width="1920"
             height="1080"
             alt={title!!}
-            priority={true}
+            priority
             onLoadingComplete={(image) => {image.classList.remove("opacity-0")}}
           />
         </div>

@@ -49,9 +49,9 @@ button {
 .glow {
   color: #fff;
   text-align: center;
-  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00eeff,
-      0 0 40px #00eeff, 0 0 50px #00eeff, 0 0 60px #00eeff, 0 0 70px #00eeff;
-/*  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00eeff, 0 0 40px #00eeff,
+    0 0 50px #00eeff, 0 0 60px #00eeff, 0 0 70px #00eeff;
+  /*  -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
   animation: glow 1s ease-in-out infinite alternate;*/
 }
@@ -79,8 +79,8 @@ button {
   color: #fff;
   text-align: center;
   text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff,
-      0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff;
- /* -webkit-animation: glowWhite 1s ease-in-out infinite alternate;
+    0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff;
+  /* -webkit-animation: glowWhite 1s ease-in-out infinite alternate;
   -moz-animation: glowWhite 1s ease-in-out infinite alternate;
   animation: glowWhite 1s ease-in-out infinite alternate;*/
 }
@@ -141,4 +141,9 @@ button {
   position: absolute;
   top: 100%;
 }
+
+li {
+  color: white;
+}
+
 

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import my_profile_image from "../images/my_profile_image.png";
+import my_profile_image from "../../public/images/my_profile_image.png";
 import scrollAnimation from "@/utils/scrollAnimation";
 
 const About = () => {
@@ -8,10 +8,8 @@ const About = () => {
   const divRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   useEffect(() => {
-    // console.log("nope", h1Ref);
 
     if (h1Ref.current !== undefined) {
-      //  console.log('hello', h1Ref.current, divRef.current)
       try {
         scrollAnimation(divRef.current, "left");
         scrollAnimation(h1Ref.current, "top");
@@ -39,7 +37,7 @@ const About = () => {
         <p className="text-white/70 floatImage">
           "Hello and welcome to my portfolio! I am a passionate Android
           developer with a focus on creating intuitive and user-friendly mobile
-          applications. I have honed my skills through personal projects and
+          applications. I have honed my skills through open source projects and
           courses, which have allowed me to gain practical experience and stay
           up-to-date with the latest technologies and trends in the industry.
           

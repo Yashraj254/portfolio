@@ -5,12 +5,15 @@ import Projects from "@/components/projects";
 import Skills from "@/components/skills";
 import { Client } from "@notionhq/client";
 import { GetStaticProps, Metadata } from "next";
-import { Inter } from "next/font/google";
+import Head from "next/head";
 import { useState } from "react";
 import { Blog, Project } from "../../type";
 import Navbar from "../components/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+export const metadata: Metadata = {
+  title: "Yashraj Singh",
+  description: "Yashraj Singh's Portfolio",
+};
 
 const notionSecret = process.env.NOTION_SECRET;
 const notionBlogsDatabaseId = process.env.NOTION_BLOGS_DATABASE_ID;
@@ -34,7 +37,6 @@ const fetchFromNotion = async () => {
   const allProjects: Project[] = [];
 
   blogsQuery.results.forEach(async (page: any) => {
-    // console.log(page.properties.date.rich_text[0]);
     const blog: Blog = {
       title: page.properties.title.title[0].plain_text,
       description: page.properties.description.rich_text[0].plain_text,
@@ -46,13 +48,13 @@ const fetchFromNotion = async () => {
       tags: page.properties.tags.multi_select.map((tag: any) => tag.name),
       pageId: page.id,
       slug: page.properties.slug.rich_text[0].plain_text,
+      status: page.properties.status.status.name,
       date: page.properties.date.date.start,
     };
-    allBlogs.push(blog);
+    if (blog.status == "Published") allBlogs.push(blog);
   });
 
   projectsQuery.results.forEach(async (page: any) => {
-    // console.log(page.properties.banner.files[0]);
 
     const project: Project = {
       title: page.properties.title.title[0].plain_text,
@@ -72,14 +74,29 @@ const fetchFromNotion = async () => {
   return { allBlogs, allProjects };
 };
 
-
-
 export default function Home(props: any) {
-  const [blogs, setBlogs] = useState<Blog[]>(props.data.allBlogs);
-  const [projects, setProjects] = useState<Blog[]>(props.data.allProjects);
+  const [blogs] = useState<Blog[]>(props.data.allBlogs);
+  const [projects] = useState<Project[]>(props.data.allProjects);
 
   return (
     <div>
+      <Head>
+        <title>Yashraj Singh Jadon</title>
+        <link rel="icon" href="/images/my_profile_image.png" sizes="any" />
+
+        <meta name="title" content="Portfolio | Yashraj Singh Jadon" />
+        <meta name="description" content="Yashraj Singh Jadon" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://yash-raj.com" />
+        <meta property="og:title" content="Portfolio | Yashraj Singh Jadon" />
+        <meta property="og:site_name" content="Yashraj Singh Jadon" />
+        <meta property="og:description" content="Yashraj Singh Jadon" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Yashraj Singh Jadon" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="English" />
+      </Head>
       <Navbar />
       <HomePage />
       <Blogs data={blogs} />

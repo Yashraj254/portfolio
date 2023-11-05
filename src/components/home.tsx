@@ -6,7 +6,7 @@ import "boxicons/css/boxicons.min.css";
 import Image from "next/image";
 import { RefObject, useEffect, useRef } from "react";
 import Typed from "typed.js";
-import projects_banner from "../images/projects_banner.png";
+import projects_banner from "../../public/images/projects_banner.png";
 import { Metadata } from "next";
 import Head from "next/head";
 
@@ -15,10 +15,7 @@ export interface Props {
   h1Ref: RefObject<HTMLHeadingElement>;
 }
 
-export const metadata : Metadata = {
-  title: "Yashraj Singh",
-  description: "Yashraj Singh's Portfolio",
-};
+
 
 const HomePage = () => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
@@ -57,15 +54,13 @@ const HomePage = () => {
 
   return (
     <section id="home" className="flex flex-col md:flex-row w-full min-h-screen py-20 px-8">
-      <Head>
-        <title>Yashraj Singh</title>
-      </Head>
+
       <div
         className="flex flex-col md:w-[50%] md:mr-8 justify-center "
       >
         <h3 ref={h3Ref} className="font-bold text-xl leading-10 ">Hello, It's Me</h3>
         <h1 ref={h1Ref} className=" font-bold text-3xl leading-10">
-          Yashraj Singh
+          Yashraj Singh Jadon
         </h1>
         <h3 ref={titleRef} className="font-bold text-xl leading-10">
           And I'm a <span ref={spanRef} className="glow "></span>
@@ -93,6 +88,7 @@ const HomePage = () => {
           </Link>
           <Link
             href="/projects"
+            
             className="border-2 border-main-color hover:bg-main-color text-main-color hover:text-secondary-bg-color h-8 w-8 flex items-center  rounded-[50%] p-1  hover:shadow-[0_0_1rem]  hover:shadow-main-color"
           >
             <FaTwitter />
@@ -105,7 +101,8 @@ const HomePage = () => {
       <Image
         className="md:flex flex-col justify-center "
         src={projects_banner}
-        alt="My Projects"       
+        alt="My Projects"  
+        priority     
       />
       </div>
     </section>

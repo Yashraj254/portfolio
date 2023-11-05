@@ -1,17 +1,17 @@
 import { useEffect, useRef } from "react";
-import android_icon from "../images/android_icon.svg";
-import compose_icon from "../images/compose_icon.png";
-import css_icon from "../images/css_icon.svg";
-import firebase_icon from "../images/firebase_icon.svg";
-import github_icon from "../images/github_icon.svg";
-import html_icon from "../images/html_icon.svg";
-import java_icon from "../images/java_icon.svg";
-import javascript_icon from "../images/javascript_icon.svg";
-import kotlin_icon from "../images/kotlin_icon.svg";
-import nextjs_icon from "../images/nextjs_icon.svg";
-import react_icon from "../images/react_icon.svg";
-import tailwind_icon from "../images/tailwind_icon.svg";
-import typescript_icon from "../images/typescript_icon.svg";
+import android_icon from "../../public/images/android_icon.svg";
+import compose_icon from "../../public/images/compose_icon.png";
+import css_icon from "../../public/images/css_icon.svg";
+import firebase_icon from "../../public/images/firebase_icon.svg";
+import github_icon from "../../public/images/github_icon.svg";
+import html_icon from "../../public/images/html_icon.svg";
+import java_icon from "../../public/images/java_icon.svg";
+import javascript_icon from "../../public/images/javascript_icon.svg";
+import kotlin_icon from "../../public/images/kotlin_icon.svg";
+import nextjs_icon from "../../public/images/nextjs_icon.svg";
+import react_icon from "../../public/images/react_icon.svg";
+import tailwind_icon from "../../public/images/tailwind_icon.svg";
+import typescript_icon from "../../public/images/typescript_icon.svg";
 import SkillItem from "./SkillItem";
 
 const Skills = () => {

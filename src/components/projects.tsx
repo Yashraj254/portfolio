@@ -16,7 +16,7 @@ const Projects = (projects: { data: Project[] }) => {
           <div key={index} className="hover:z-10">
             <ProjectItem
               title={project.title!!}
-              sourceCode={project.sourceCode!!}
+              sourceCode={project.sourceCode}
               backgroundImg={project.banner!!}
               projectUrl={project.slug!!}
               tech={project.tech!!}

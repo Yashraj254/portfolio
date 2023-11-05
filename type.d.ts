@@ -5,6 +5,7 @@ export type Blog = {
     thumbnail?: string;
     tags?: string[];
     slug?: string;
+    status?: string;
     pageId?:string;
     date?:string;
     mdString?:string;
