@@ -15,8 +15,6 @@ export interface Props {
   h1Ref: RefObject<HTMLHeadingElement>;
 }
 
-
-
 const HomePage = () => {
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const h3Ref = useRef<HTMLHeadingElement>(null);
@@ -53,12 +51,14 @@ const HomePage = () => {
   }, []);
 
   return (
-    <section id="home" className="flex flex-col md:flex-row w-full min-h-screen py-20 px-8">
-
-      <div
-        className="flex flex-col md:w-[50%] md:mr-8 justify-center "
-      >
-        <h3 ref={h3Ref} className="font-bold text-xl leading-10 ">Hello, It's Me</h3>
+    <section
+      id="home"
+      className="flex flex-col md:flex-row w-full min-h-screen py-20 px-8"
+    >
+      <div className="flex flex-col md:w-[50%] md:mr-8 justify-center ">
+        <h3 ref={h3Ref} className="font-bold text-xl leading-10 ">
+          Hello, It's Me
+        </h3>
         <h1 ref={h1Ref} className=" font-bold text-3xl leading-10">
           Yashraj Singh Jadon
         </h1>
@@ -75,20 +75,19 @@ const HomePage = () => {
 
         <div ref={pRef} className="flex  px-10 py-5 space-x-5 text-3xl ">
           <Link
-            href="/projects"
+            href="https://github.com/Yashraj254"
             className=" border-2 border-main-color hover:bg-main-color text-main-color hover:text-secondary-bg-color h-8 w-8 flex items-center  rounded-[50%] p-1  hover:shadow-[0_0_1rem]  hover:shadow-main-color"
           >
             <FaGithub />
           </Link>
           <Link
-            href="/projects"
+            href="https://www.linkedin.com/in/yashraj-singh-47734b179/"
             className="border-2 border-main-color hover:bg-main-color text-main-color hover:text-secondary-bg-color h-8 w-8 flex items-center  rounded-[50%] p-2  hover:shadow-[0_0_1rem]  hover:shadow-main-color"
           >
             <FaLinkedinIn />
           </Link>
           <Link
-            href="/projects"
-            
+            href="https://x.com/Yashraj_254?t=xtuvJc-lExnXaw-JK7XxDg&s=09"
             className="border-2 border-main-color hover:bg-main-color text-main-color hover:text-secondary-bg-color h-8 w-8 flex items-center  rounded-[50%] p-1  hover:shadow-[0_0_1rem]  hover:shadow-main-color"
           >
             <FaTwitter />
@@ -96,14 +95,17 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div ref={imageRef} className="md:flex flex-col md:w-[50%] justify-center ">
-      {/* <BackgroundAnimation /> */}
-      <Image
-        className="md:flex flex-col justify-center "
-        src={projects_banner}
-        alt="My Projects"  
-        priority     
-      />
+      <div
+        ref={imageRef}
+        className="md:flex flex-col md:w-[50%] justify-center "
+      >
+        {/* <BackgroundAnimation /> */}
+        <Image
+          className="md:flex flex-col justify-center "
+          src={projects_banner}
+          alt="My Projects"
+          priority
+        />
       </div>
     </section>
   );
