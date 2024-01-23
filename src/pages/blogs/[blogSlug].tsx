@@ -72,10 +72,9 @@ const BlogPage = (props: any) => {
       return `<code>${escapedContent}</code>`;
     }
   );
-
   return (
     <div
-      className=" px-6 prose prose-xl prose-zinc prose-p:text-white 
+      className=" px-6 prose prose-xl prose-zinc prose-p:text-white prose-h2:text-white 
      prose-code:bg-code-bg prose-code:before:content-none
      prose-code:after:content-none prose-code:p-1 prose-code:rounded-md container  max-w-none mx-auto sm:w-3/4 md:w-3/4 lg:w-3/4"
     >
@@ -85,7 +84,7 @@ const BlogPage = (props: any) => {
         <meta name="description" content={data.blog.description} />
         <meta name="keywords" content={data.blog.tags} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="author" content="Animesh Sharma" />
+        <meta name="author" content="Yashraj Singh Jadon" />
         <meta name="image" property="og:image" content={data.blog.thumbnail} />
         <meta property="og:type" content="website" />
         <meta
@@ -94,6 +93,7 @@ const BlogPage = (props: any) => {
         />
         <meta property="og:title" content={data.blog.title} />
         <meta property="og:description" content={data.blog.description} />
+        
       </Head>
       <div className="flex flex-col w-full">
         <Image

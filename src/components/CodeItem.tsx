@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import tsx from "react-syntax-highlighter/dist/cjs/languages/prism/tsx";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { FaCopy } from "react-icons/fa";
 import { FaPaste } from "react-icons/fa";
 import { materialDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
@@ -10,7 +9,6 @@ interface CodeItemProps {
   children: any;
   language: string;
 }
-SyntaxHighlighter.registerLanguage("tsx", tsx);
 
 const CodeItem: React.FC<CodeItemProps> = ({ children, language }) => {
   const [copied, setCopied] = useState(false);
@@ -19,7 +17,7 @@ const CodeItem: React.FC<CodeItemProps> = ({ children, language }) => {
     let child = element.toString().replace(/\n$/, "");
     childrens.push(child);
   });
-  if (childrens[0].startsWith("<")) {
+  if (childrens[0].startsWith("<") || childrens[0].startsWith("**")) {
     childrens = "";
     children.map((child: any) => {
       if (typeof child === "string") childrens += child;

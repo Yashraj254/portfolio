@@ -26,7 +26,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const typed = new Typed(spanRef.current, {
-      strings: ["Android Developer", "Web Developer", "Blogger"],
+      strings: ["Android Developer"],
       typeSpeed: 100,
       backSpeed: 100,
       backDelay: 1000,
@@ -66,11 +66,11 @@ const HomePage = () => {
           And I'm a <span ref={spanRef} className="glow "></span>
         </h3>
         <p ref={pRef} className="text-white/70">
-          "Hello and welcome to my portfolio! I am a passionate Android
-          developer with a focus on creating intuitive and user-friendly mobile
-          applications. I have honed my skills through personal projects and
-          courses, which have allowed me to gain practical experience and stay
-          up-to-date with the latest technologies and trends in the industry.
+          I'm an Android developer dedicated to crafting intuitive and
+          user-friendly mobile applications. Drawing from hands-on experiences
+          in personal, freelance, and open-source projects, I bring a practical
+          approach to stay current with the latest trends in Android
+          development.
         </p>
 
         <div ref={pRef} className="flex  px-10 py-5 space-x-5 text-3xl ">

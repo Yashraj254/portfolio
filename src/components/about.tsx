@@ -35,11 +35,13 @@ const About = () => {
           <span>Android Developer</span>
         </h3>
         <p className="text-white/70 floatImage">
-          "Hello and welcome to my portfolio! I am a passionate Android
-          developer with a focus on creating intuitive and user-friendly mobile
-          applications. I have honed my skills through open source projects and
-          courses, which have allowed me to gain practical experience and stay
-          up-to-date with the latest technologies and trends in the industry.
+        Hello and thank you for visiting my portfolio! I'm an enthusiastic
+          Android developer dedicated to crafting intuitive and user-friendly
+          mobile applications. My skills have been refined through personal
+          projects, relevant courses, open-source contributions, and freelance
+          projects providing me with practical experience and keeping me in the
+          loop with the latest technologies and industry trends. Let's explore
+          the world of Android development together!
           
         </p>
       </div>
